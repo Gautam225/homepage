@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feel</title>
+    <link rel="stylesheet" href="ttop.css"> 
+   
+</head>
+<body background="homebg.jpg">
+   
+    <div id="container" class="container">
+        <h1>Text to Speech</h1>
+        <textarea id="text-input" class="pam" placeholder="Enter text to be spoken"></textarea>
+        <button id="speak-button" class="button">Speak</button>
+    </div>
+
+    <script>
+        const textInput = document.getElementById('text-input');
+        const speakButton = document.getElementById('speak-button');
+
+        // Check if the browser supports the Web Speech API
+        if ('speechSynthesis' in window) {
+            const synth = window.speechSynthesis;
+
+            speakButton.addEventListener('click', () => {
+                const text = textInput.value;
+
+                if (text !== '') {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    synth.speak(utterance);
+                }
+            });
+        } else {
+            alert('Text-to-speech is not supported in this browser.');
+        }
+    </script>
+</body>
+</html>
